@@ -5,14 +5,14 @@ import sys
 
 def particion(lista, izq, der):
 	global comparaciones
-	pivote = lista[der]
+	pivote = lista[izq]
 	indice = izq
 
 	for i in range(izq, der):
 		comparaciones += 1
 
 		if lista[i] <= pivote:
-			lista[indice], lista[i] = lista[i], lista[indice]
+			lista[indice], lista[i + 1] = lista[i], lista[indice]
 			indice += 1
 
 	lista[indice], lista[der] = lista[der], lista[indice]
@@ -20,7 +20,7 @@ def particion(lista, izq, der):
 
 def quicksort(lista, izq, der):
     if izq < der:
-    	pivote_indice = particion(lista, izq, der)
+    	pivote_indice = particion(lista, izq - 1, der)
     	quicksort(lista, izq, pivote_indice-1)
     	quicksort(lista, pivote_indice+1, der)
 
